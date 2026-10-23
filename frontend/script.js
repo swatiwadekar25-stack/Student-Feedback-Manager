@@ -36,7 +36,7 @@ feedbackForm.addEventListener("submit", async (e) => {
     try {
 
         const response = await fetch(
-            "http://localhost:4000/api/feedback",
+            "https://student-feedback-manager-frontend-tau.vercel.app/api/feedback",
             {
                 method: "POST",
 
