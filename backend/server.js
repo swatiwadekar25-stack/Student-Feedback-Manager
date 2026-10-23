@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static("../frontend"))
+// app.use(express.static("../frontend"))
 
 app.get("/", (req, res) => {
   res.send("Student Feedback Manager Backend is running!");
@@ -36,3 +36,4 @@ if (process.env.NODE_ENV !== "production") {
     console.log("Server is running on port 4000");
   });
 }
+export default app
