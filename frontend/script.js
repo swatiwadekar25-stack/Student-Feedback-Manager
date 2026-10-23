@@ -31,12 +31,13 @@ feedbackForm.addEventListener("submit", async (e) => {
     const rating = selectedRating.value;
 
     // Get comment
+    const API_URL="https://student-feedback-manager-frontend-tau.vercel.app/api/feedback"
     const comment = document.getElementById("comment").value;
 
     try {
 
         const response = await fetch(
-            "https://student-feedback-manager-frontend-tau.vercel.app/api/feedback",
+           API_URL,
             {
                 method: "POST",
 

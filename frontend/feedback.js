@@ -2,11 +2,11 @@
 const feedbackList = document.getElementById("feedbackList");
 
 async function getFeedback() {
-
+const API_URL="https://student-feedback-manager-frontend-tau.vercel.app/api/feedback"
 try {
 
     const response = await fetch(
-        "https://student-feedback-manager-frontend-tau.vercel.app/api/feedback"
+        API_URL
     );
 
     const feedback = await response.json();
