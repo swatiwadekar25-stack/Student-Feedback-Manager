@@ -13,6 +13,10 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static("../frontend"))
 
+app.get("/", (req, res) => {
+  res.send("Student Feedback Manager Backend is running!");
+});
+
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => {
         console.log("MongoDB Connected");
