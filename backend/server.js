@@ -39,6 +39,7 @@
 // export default app
 
 
+
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -50,21 +51,57 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json());
+// Middleware
 app.use(cors());
+app.use(express.json());
 
+// Home route
 app.get("/", (req, res) => {
-  res.send("Student Feedback Manager Backend is running!");
+  res.status(200).send(
+    "Student Feedback Manager Backend is running!"
+  );
 });
 
+// Health check
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Backend is working",
+  });
+});
+
+// Feedback CRUD routes
 app.use("/api/feedback", feedbackRoutes);
 
-// Export the app for Vercel
-export default app;
+// Server port
+const PORT = process.env.PORT || 4000;
 
-// Run locally only
-if (process.env.NODE_ENV !== "production") {
-  app.listen(4000, () => {
-    console.log("Server is running on port 4000");
-  });
+// Start server
+async function startServer() {
+  try {
+    const mongoUrl =
+      process.env.MONGO_URL ||
+      process.env.MONGODB_URI ||
+      process.env.MONGODB_URL;
+
+    if (!mongoUrl) {
+      throw new Error(
+        "MongoDB URL is missing. Add it in Render Environment settings."
+      );
+    }
+
+    await mongoose.connect(mongoUrl);
+    console.log("MongoDB connected successfully");
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error.message);
+    process.exit(1);
+  }
 }
+
+startServer();
+
+export default app;
