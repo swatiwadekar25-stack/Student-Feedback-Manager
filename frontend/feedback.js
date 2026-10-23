@@ -70,7 +70,7 @@ async function deleteFeedback(id){
         return
     }
     try{
-        const response =await fetch(`/api/feedback/${id}`,{
+        const response =await fetch(`${API_URL}/api/feedback/${id}`,{
             method:"DELETE"
         })
 
