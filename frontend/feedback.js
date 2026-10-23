@@ -3,8 +3,9 @@
 const feedbackList = document.getElementById("feedbackList");
 
 // Render backend API URL
-const API_URL =
-  "https://student-feedback-manager-ce1o.onrender.com/api/feedback";
+
+const API_URL = "https://student-feedback-manager-ce1o.onrender.com/api/feedback";
+
 
 // GET ALL FEEDBACK
 async function getFeedback() {
