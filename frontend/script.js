@@ -1,81 +1,74 @@
 
 
+
 const feedbackForm = document.getElementById("feedbackForm");
 const message = document.getElementById("message");
 
+// Correct Render backend URL
+const API_URL = "https://student-feedback-manager-ce1o.onrender.com/api/feedback";
 
+// Submit feedback form
 feedbackForm.addEventListener("submit", async (e) => {
-
     e.preventDefault();
 
- // Get student information
-    const studentName = document.getElementById("studentName").value;
-    const studentId = document.getElementById("studentId").value;
-    const email = document.getElementById("email").value;
+    const studentName = document.getElementById("studentName").value.trim();
+    const studentId = document.getElementById("studentId").value.trim();
+    const email = document.getElementById("email").value.trim();
     const course = document.getElementById("course").value;
     const year = document.getElementById("year").value;
     const semester = document.getElementById("semester").value;
-    const batch = document.getElementById("batch").value;
+    const batch = document.getElementById("batch").value.trim();
+    const comment = document.getElementById("comment").value.trim();
 
-     // Get selected rating
     const selectedRating = document.querySelector(
         'input[name="rating"]:checked'
     );
 
-    // Check if rating is selected
     if (!selectedRating) {
         message.textContent = "Please select a rating.";
         return;
     }
 
-    const rating = selectedRating.value;
-
-    // Get comment
-    const API_URL="https://student-feedback-manager-frontend-tau.vercel.app/api/feedback"
-    const comment = document.getElementById("comment").value;
+    const feedbackData = {
+        studentName,
+        studentId,
+        email,
+        course,
+        year,
+        semester,
+        batch,
+        rating: Number(selectedRating.value),
+        comment
+    };
 
     try {
+        message.textContent = "Submitting feedback...";
 
-        const response = await fetch(
-           API_URL,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                   studentName:studentName,
-                   studentId:studentId,
-                   email:email,
-                   course:course,
-                   year:year,
-                   semester:semester,
-                   batch:batch,
-                   rating:Number(rating),
-                   comment:comment
-                })
-            }
-        );
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(feedbackData)
+        });
 
         const data = await response.json();
 
-        if (response.ok) {
-
-            message.textContent = data.message;
-
-            feedbackForm.reset();
-
-        } else {
-
-            message.textContent = data.message;
+        if (!response.ok) {
+            throw new Error(
+                data.message || `Request failed: ${response.status}`
+            );
         }
 
+        message.textContent =
+            data.message || "Feedback submitted successfully!";
+
+        feedbackForm.reset();
+
     } catch (error) {
+        console.error("Feedback submission error:", error);
 
-        console.error(error);
-
-        message.textContent = "Something went wrong. Please try again.";
+        message.textContent =
+            "Unable to submit feedback. Please check your connection and try again.";
     }
 });

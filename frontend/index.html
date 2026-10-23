@@ -1,223 +1,218 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Student Feedback Manager</title>
 
+    <!-- Prevent missing favicon error -->
+    <link rel="icon" href="data:,">
+
+    <!-- CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
- <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar">
-         <h2>🎓 Student Feedback</h2>
+        <h2>🎓 Student Feedback</h2>
 
-    <div>
-        <a href="index.html">Give Feedback</a>
-        <a href="feedback.html">All Feedback</a>
-    </div>
-
+        <div>
+            <a href="index.html">Give Feedback</a>
+            <a href="feedback.html">All Feedback</a>
+        </div>
     </nav>
+
     <!-- Main Section -->
     <main class="container">
-
         <div class="feedback-card">
 
-        <h1>Student Feedback</h1>
+            <h1>Student Feedback</h1>
+            <p class="subtitle">Your feedback helps us improve.</p>
 
-        <p class="subtitle">Your feedback helps us improve</p>
+            <!-- Feedback Form -->
+            <form id="feedbackForm">
 
+                <!-- Student Information -->
+                <h3 class="section-title">
+                    👨‍🎓 Student Information
+                </h3>
 
-         <!-- Feedback Form -->
-        <form id="feedbackForm">
-
-          <!-- Student Information -->
-            <h3 class="section-title">👨‍🎓 Student Information</h3>
-
-            <div class="form-row">
-             <!-- Student Name -->
-            <div class="form-group">
-
-                <label for="name">Student Name *</label>
-
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentName">Student Name *</label>
                         <input
                             type="text"
                             id="studentName"
+                            name="studentName"
                             placeholder="Enter your name"
-                            required>
-            </div>
-             <!-- Student ID -->
-            <div class="form-group">
-   
-                <label for="studentId">Student ID *</label>
+                            required
+                        >
+                    </div>
 
+                    <div class="form-group">
+                        <label for="studentId">Student ID *</label>
                         <input
                             type="text"
                             id="studentId"
+                            name="studentId"
                             placeholder="Enter student ID"
-                            required>
-                        
-            </div>
+                            required
+                        >
+                    </div>
+                </div>
 
-            </div>
-             <!-- Email -->
-            <div class="form-group">
-
-                <label for="email">Email</label>
-
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
                     <input
                         type="email"
                         id="email"
-                        placeholder="Enter your email">
+                        name="email"
+                        placeholder="Enter your email"
+                    >
                 </div>
 
-
+                <!-- Course and Year -->
                 <div class="form-row">
-
-                    <!-- Course -->
-                <div class="form-group">
-           
-                    <label for="course">Course</label>
-
-                    <select id="course">
-
-                        <option value="">Select Course</option>
-                        <option value="BCA">BCA</option>
-                        <option value="BBA">BBA</option>
-                        <option value="BSc">B.Sc</option>  
-                        <option value="BA">BA</option>
-
-                    </select>
-
-                </div>
-                    <!-- Year -->
-                <div class="form-group">
-                    <label for="year">year</label>
-
-                    <select id="year">
-
-                        <option value="">Select Year</option>
-                        <option value="1st Year">1st Year</option>
-                        <option value="2nd Year">2nd Year</option>
-                        <option value="3rd Year">3rd Year</option>
-                        <option value="4th Year">4th Year</option>
-
-                    </select>
-
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <select id="course" name="course">
+                            <option value="">Select Course</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BSc">B.Sc</option>
+                            <option value="BA">BA</option>
+                        </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <select id="year" name="year">
+                            <option value="">Select Year</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </div>
                 </div>
 
-                 <div class="form-row">
-                   <!-- Semester -->
-                <div class="form-group">
-                    <label for="semester">Semester</label>
-                    <select id="semester">
-                        <option value="">Select Semester</option>
-                        <option value="1st Semester">1st Semester</option>
-                        <option value="2nd Semester">2nd Semester</option>
-                        <option value="3rd Semester">3rd Semester</option>
-                        <option value="4th Semester">4th Semester</option>
-                        <option value="5th Semester">5th Semester</option>
-                        <option value="6th Semester">6th Semester</option>
+                <!-- Semester and Batch -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <select id="semester" name="semester">
+                            <option value="">Select Semester</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <option value="3rd Semester">3rd Semester</option>
+                            <option value="4th Semester">4th Semester</option>
+                            <option value="5th Semester">5th Semester</option>
+                            <option value="6th Semester">6th Semester</option>
+                        </select>
+                    </div>
 
-                    </select>
-                </div>
-                <!-- Batch -->
-                <div class="form-group">
-                <label for="batch">Batch</label>
-
+                    <div class="form-group">
+                        <label for="batch">Batch</label>
                         <input
                             type="text"
                             id="batch"
-                            placeholder="Example: 2025-2029">
+                            name="batch"
+                            placeholder="Example: 2025-2029"
+                        >
+                    </div>
+                </div>
 
-                </div>
-                </div>
                 <!-- Feedback Section -->
-                <h3 class="section-title"> 📝 Your Feedback</h3>
+                <h3 class="section-title">📝 Your Feedback</h3>
 
-                 <!-- Rating -->
+                <!-- Rating -->
                 <div class="form-group">
+                    <label>Rating *</label>
 
-                    <label> Rating </label>
-                
-                <div class="rating">
-
-                    <label>
-                        <input
-                            type="radio"
-                            name="rating"
-                            value="1"
-                            required>
+                    <div class="rating">
+                        <label>
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="1"
+                                required
+                            >
                             1 ⭐
-                    </label>
+                        </label>
 
-                    <label>
-                        <input
-                            type="radio"
-                            name="rating"
-                            value="2">
+                        <label>
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="2"
+                            >
                             2 ⭐
                         </label>
 
-                    <label>
-                        <input
-                            type="radio"
-                            name="rating"
-                            value="3">
+                        <label>
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="3"
+                            >
                             3 ⭐
-                    </label>
+                        </label>
 
-                    <label>
-                        <input
-                            type="radio"
-                            name="rating"
-                            value="4">
+                        <label>
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="4"
+                            >
                             4 ⭐
-                    </label>
+                        </label>
 
-                    <label>
-                        <input
-                            type="radio"
-                            name="rating"
-                            value="5">
+                        <label>
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="5"
+                            >
                             5 ⭐
-                    </label>
-
+                        </label>
                     </div>
-
                 </div>
 
                 <!-- Comment -->
                 <div class="form-group">
+                    <label for="comment">Your Comment *</label>
 
-                    <label for="comment">Your Comment</label>
                     <textarea
                         id="comment"
+                        name="comment"
+                        rows="4"
                         placeholder="Tell us about your experience..."
                         required
                     ></textarea>
-
                 </div>
-                <!-- Submit -->
-                <button type="submit">Submit Feedback</button>
-                <br>
-                <br>
 
-                <a class="view-feedback" href="feedback.html">View All Feedback →</a>
-                
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn">
+                    Submit Feedback
+                </button>
+
+                <p id="message" role="status" aria-live="polite"></p>
+
+                <p>
+                    <a class="view-feedback" href="feedback.html">
+                        View All Feedback →
+                    </a>
+                </p>
+
             </form>
-     <p id="message"></p>
-
         </div>
-
     </main>
 
-
+    <!-- JavaScript file -->
     <script src="script.js"></script>
-
 </body>
-
 </html>
